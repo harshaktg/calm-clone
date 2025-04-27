@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, provide, computed } from 'vue'
+import { ref, provide, computed, watch } from 'vue'
 import MoodSelector from './components/MoodSelector.vue'
 import AmbientPlayer from './components/AmbientPlayer.vue'
 import Navbar from './components/Navbar.vue';
@@ -45,7 +45,13 @@ const moodThemes: Record<Mood, { bg: string; text: string; accent: string; blogB
     blogBg: 'bg-gradient-to-b from-green-100 to-green-200',
   },
 }
-const currentMood = ref<Mood>('default')
+// Load from localStorage or fallback to 'default'
+const savedMood = localStorage.getItem('currentMood') as Mood | null
+const currentMood = ref<Mood>(savedMood || 'default')
+// Watch for changes and save to localStorage
+watch(currentMood, (val) => {
+  localStorage.setItem('currentMood', val)
+})
 const moodModel = computed({
   get: () => currentMood.value,
   set: (val) => { currentMood.value = val }
