@@ -10,7 +10,7 @@ function toggleMobileMenu() {
 
 <template>
     <header
-        class="flex items-center bg-gradient-to-b from-[#176293] via-[#17629355] to-transparent h-16 px-4 sticky top-0 z-[100] md:h-24 md:px-10">
+        class="flex items-center bg-gradient-to-b from-[#176293] via-[#17629355] to-transparent h-16 px-4 sticky top-0 z-[100] lg:h-[100px] lg:px-10">
         <div data-focus-guard="true" tabindex="-1" class="w-px h-0 p-0 overflow-hidden fixed top-px left-px"></div>
         <div class="w-full">
             <nav aria-label="primary" class="flex justify-between w-full p-0">
@@ -20,7 +20,7 @@ function toggleMobileMenu() {
                             class="app-logo h-[25px] w-[64px] inline-flex items-center bg-transparent rounded-full border-none text-white font-avenir-next text-base font-medium leading-7 justify-center relative transition duration-300 z-0 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] px-3 py-3 md:py-3 md:text-lg"
                             aria-label="Calm Logo - Link to calm.com Homepage" tabindex="0" href="/">
                             <span
-                                class="hidden h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300">
+                                class="hidden h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-14 lg:w-14">
                                 <!-- SVG logo -->
                                 <svg class="h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 128 128" width="56" height="56">
@@ -40,7 +40,7 @@ function toggleMobileMenu() {
                                 </svg>
                             </span>
                             <span
-                                class="block h-[25px] w-[64px] left-1/2 opacity-0 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300">
+                                class="block h-[25px] w-[64px] left-1/2 opacity-0 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-[30px] lg:w-[75px]">
                                 <!-- SVG logo -->
                                 <svg class="w-full h-full" width="1em" height="1em" viewBox="0 0 103 41" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,7 @@ function toggleMobileMenu() {
                                 </svg>
                             </span>
                             <span
-                                class="block h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300">
+                                class="block h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:hidden lg:h-[30px] lg:w-[75px]">
                                 <!-- SVG logo -->
                                 <svg class="w-full h-full" width="1em" height="1em" viewBox="0 0 36 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -68,19 +68,19 @@ function toggleMobileMenu() {
                             </span>
                         </a>
                     </li>
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
                             class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
                             Sleep
                         </button>
                     </li>
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
                             class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
                             Stress &amp; Anxiety
                         </button>
                     </li>
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
                             class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
                             Mindfulness
@@ -88,31 +88,31 @@ function toggleMobileMenu() {
                     </li>
                 </ul>
                 <ul class="flex items-center p-0 gap-x-6 list-none">
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 lg:block">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
+                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
                             Screening
                         </button>
                     </li>
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 lg:block">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
+                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
                             Calm Health
                         </button>
                     </li>
-                    <li class="hidden flex-shrink-0 md:block">
+                    <li class="hidden flex-shrink-0 lg:block">
                         <button data-testid="desktopnav-login-button" aria-label="Log In"
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
+                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
                             Log In
                         </button>
                     </li>
                     <li class="flex-0 w-[180px] text-center max-w-[180px]">
                         <button data-testid="button-element-type"
-                            class="inline-flex items-center bg-white text-gray-800 font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-3 py-3 md:py-3 md:text-lg">
+                            class="inline-flex items-center bg-white text-gray-800 font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-[1.11rem] py-3.5 md:py-3 text-lg">
                             Try Calm for Free
                         </button>
                     </li>
-                    <li class="block">
+                    <li class="block xl:hidden">
                         <button data-testid="button-element-type" aria-label="Open Mobile menu" aria-expanded="false"
                             aria-controls="mobile-menu"
                             class="menu-icon inline-flex items-center justify-center relative transition ease-out duration-300 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] rounded-full bg-transparent border-none shadow-none z-[990] text-inherit font-inherit leading-normal appearance-none px-0 py-0 md:py-3 md:text-lg"
