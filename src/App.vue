@@ -6,6 +6,7 @@ import MusicBanner from './components/MusicBanner.vue';
 import Reviews from './components/Reviews.vue';
 import TrailSection from './components/TrailSection.vue';
 import Blogs from './components/Blogs.vue';
+import Faq from './components/Faq.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import Blogs from './components/Blogs.vue';
     <TrailSection />
     <div class="blog-container">
       <Blogs />
+      <Faq />
     </div>
   </main>
 </template>
