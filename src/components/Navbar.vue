@@ -1,16 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
+const scrolled = ref(false)
 
 function toggleMobileMenu() {
     mobileMenuOpen.value = !mobileMenuOpen.value
 }
+
+function handleScroll() {
+    scrolled.value = window.scrollY > 5
+}
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+})
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
     <header
-        class="flex items-center bg-gradient-to-b from-[#176293] via-[#17629355] to-transparent h-16 px-4 sticky top-0 z-[100] lg:h-[100px] lg:px-10">
+        class="header-container flex items-center bg-gradient-to-b from-[#176293] via-[#17629355] to-transparent h-16 px-4 sticky top-0 z-[100] lg:h-[100px] lg:px-10"
+        :class="{ 'scrolled': scrolled }">
         <div data-focus-guard="true" tabindex="-1" class="w-px h-0 p-0 overflow-hidden fixed top-px left-px"></div>
         <div class="w-full">
             <nav aria-label="primary" class="flex justify-between w-full p-0">
@@ -18,9 +31,11 @@ function toggleMobileMenu() {
                     <li class="h-[60px] w-[76px] relative text-center">
                         <a data-testid="Link-element-type"
                             class="app-logo h-[25px] w-[64px] inline-flex items-center bg-transparent rounded-full border-none text-white font-avenir-next text-base font-medium leading-7 justify-center relative transition duration-300 z-0 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] px-3 py-3 md:py-3 md:text-lg"
-                            aria-label="Calm Logo - Link to calm.com Homepage" tabindex="0" href="/">
+                            :class="{ 'scrolled': scrolled }" aria-label="Calm Logo - Link to calm.com Homepage"
+                            tabindex="0" href="/">
                             <span
-                                class="hidden h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-14 lg:w-14">
+                                class="hidden h-[25px] w-[64px] left-1/2 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-14 lg:w-14"
+                                :class="{ 'opacity-0': scrolled, 'opacity-100': !scrolled }">
                                 <!-- SVG logo -->
                                 <svg class="h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 128 128" width="56" height="56">
@@ -40,7 +55,8 @@ function toggleMobileMenu() {
                                 </svg>
                             </span>
                             <span
-                                class="block h-[25px] w-[64px] left-1/2 opacity-0 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-[30px] lg:w-[75px]">
+                                class="block h-[25px] w-[64px] left-1/2 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:block lg:h-[30px] lg:w-[75px]"
+                                :class="{ 'opacity-100': scrolled, 'opacity-0': !scrolled }">
                                 <!-- SVG logo -->
                                 <svg class="w-full h-full" width="1em" height="1em" viewBox="0 0 103 41" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +73,8 @@ function toggleMobileMenu() {
                                 </svg>
                             </span>
                             <span
-                                class="block h-[25px] w-[64px] left-1/2 opacity-100 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:hidden lg:h-[30px] lg:w-[75px]">
+                                class="block h-[25px] w-[64px] left-1/2 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition ease-out duration-300 lg:hidden lg:h-[30px] lg:w-[75px]"
+                                :class="{ 'opacity-0': scrolled, 'opacity-100': !scrolled }">
                                 <!-- SVG logo -->
                                 <svg class="w-full h-full" width="1em" height="1em" viewBox="0 0 36 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -70,19 +87,22 @@ function toggleMobileMenu() {
                     </li>
                     <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
                             Sleep
                         </button>
                     </li>
                     <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
-                            Stress &amp; Anxiety
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
+                            Stress & Anxiety
                         </button>
                     </li>
                     <li class="hidden flex-shrink-0 xl:block xl:font-bold xl:text-lg">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px]">
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
                             Mindfulness
                         </button>
                     </li>
@@ -90,35 +110,40 @@ function toggleMobileMenu() {
                 <ul class="flex items-center p-0 gap-x-6 list-none">
                     <li class="hidden flex-shrink-0 lg:block">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
                             Screening
                         </button>
                     </li>
                     <li class="hidden flex-shrink-0 lg:block">
                         <button
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
                             Calm Health
                         </button>
                     </li>
                     <li class="hidden flex-shrink-0 lg:block">
                         <button data-testid="desktopnav-login-button" aria-label="Log In"
-                            class="bg-transparent text-white font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg">
+                            class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
+                            :class="{ 'text-[#383841]': scrolled, 'text-white': !scrolled }">
                             Log In
                         </button>
                     </li>
                     <li class="flex-0 w-[180px] text-center max-w-[180px]">
                         <button data-testid="button-element-type"
-                            class="inline-flex items-center bg-white text-gray-800 font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-[1.11rem] py-3.5 md:py-3 text-lg">
+                            class="inline-flex items-center font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-[1.11rem] py-3.5 md:py-3 text-lg"
+                            :class="{ 'bg-gradient-to-b from-[#2477AA] to-[#6461E0] text-white': scrolled, 'bg-white text-gray-800': !scrolled }">
                             Try Calm for Free
                         </button>
                     </li>
                     <li class="block xl:hidden">
                         <button data-testid="button-element-type" aria-label="Open Mobile menu" aria-expanded="false"
                             aria-controls="mobile-menu"
-                            class="menu-icon inline-flex items-center justify-center relative transition ease-out duration-300 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] rounded-full bg-transparent border-none shadow-none z-[990] text-inherit font-inherit leading-normal appearance-none px-0 py-0 md:py-3 md:text-lg"
+                            class="inline-flex items-center justify-center relative transition ease-out duration-300 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] rounded-full bg-transparent border-none shadow-none text-inherit font-inherit leading-normal appearance-none px-0 py-0 md:py-3 md:text-lg"
                             :class="{
                                 'menu-icon z-[990]': !mobileMenuOpen,
-                                'close-icon z-[1000]': mobileMenuOpen
+                                'close-icon z-[1000]': mobileMenuOpen,
+                                'scrolled': scrolled
                             }" @click="toggleMobileMenu">
                             <div class="absolute w-8 h-[2.5px] bg-white rounded-[2.5px] transition ease-out duration-300"
                                 :style="!mobileMenuOpen ? `transform: translate3d(0px, -8px, 0px);` : `transform: translate3d(0px, 0px, 0px) rotate(45deg);`">
@@ -202,6 +227,10 @@ function toggleMobileMenu() {
     opacity: 0;
 }
 
+.app-logo.scrolled::after {
+    border: 2px solid rgb(26, 62, 111);
+}
+
 .menu-icon::before {
     content: "";
     position: absolute;
@@ -228,5 +257,35 @@ function toggleMobileMenu() {
     margin: 0px;
     opacity: 0;
     box-shadow: none;
+}
+
+.menu-icon.scrolled div {
+    @apply bg-black
+}
+
+.header-container::after {
+    @apply lg:h-[100px];
+    background: rgb(255, 255, 255);
+    inset: 0px;
+    content: "";
+    height: 64px;
+    opacity: 0;
+    position: absolute;
+    transform: translateY(-100%);
+    transition: 0.3s ease-out;
+    z-index: -1;
+}
+
+.header-container.scrolled::after {
+    @apply lg:h-[100px] lg:py-[50px];
+    background: rgb(255, 255, 255);
+    inset: 0px;
+    content: "";
+    height: 64px;
+    opacity: 1;
+    position: absolute;
+    transform: translateY(0%);
+    transition: 0.3s ease-out;
+    z-index: -1;
 }
 </style>
