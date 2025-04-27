@@ -50,7 +50,6 @@ const listRef = ref<HTMLElement | null>(null)
 
 const currentMood = inject<Ref<Mood>>('currentMood')
 const moodThemes = inject<any>('moodThemes')
-const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 const reviewsBg = computed(() => currentMood?.value === 'default' ? moodThemes?.[currentMood?.value ?? 'default']?.blogBg : 'bg-transparent')
 
 function goLeft() {

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue'
-import type { Ref } from 'vue'
-type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
-const currentMood = inject<Ref<Mood>>('currentMood')
-const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
-const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>

@@ -1,15 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, inject, computed } from 'vue'
-import type { Ref } from 'vue'
-
-type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
 const scrolled = ref(false)
-
-const currentMood = inject<Ref<Mood>>('currentMood')
-const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
-const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 
 function toggleMobileMenu() {
     mobileMenuOpen.value = !mobileMenuOpen.value

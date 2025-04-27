@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, provide, computed } from 'vue'
 import MoodSelector from './components/MoodSelector.vue'
+import AmbientPlayer from './components/AmbientPlayer.vue'
 import Navbar from './components/Navbar.vue';
 import Hero from './components/Hero.vue';
 import Features from './components/Features.vue';
@@ -56,6 +57,7 @@ provide('moodThemes', moodThemes)
 <template>
   <div
     :class="[moodThemes[currentMood].bg, moodThemes[currentMood].text, 'min-h-screen transition-colors duration-500']">
+    <AmbientPlayer />
     <MoodSelector v-model="moodModel" />
     <Navbar />
     <main id="main-content" :class="['-mt-16 relative lg:-mt-[100px]',
