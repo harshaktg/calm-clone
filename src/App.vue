@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.vue';
 import Hero from './components/Hero.vue';
 import Features from './components/Features.vue';
 import MusicBanner from './components/MusicBanner.vue';
+import Reviews from './components/Reviews.vue';
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import MusicBanner from './components/MusicBanner.vue';
     <Hero />
     <Features />
     <MusicBanner />
+    <Reviews />
   </main>
 </template>
 
