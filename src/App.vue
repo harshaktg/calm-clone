@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import Navbar from './components/Navbar.vue';
 import Hero from './components/Hero.vue';
+import Features from './components/Features.vue';
 </script>
 
 <template>
   <Navbar />
   <main id="main-content" class="bg-[#f7f7f7] -mt-16 relative lg:-mt-[100px]">
     <Hero />
+    <Features />
   </main>
 </template>
 
