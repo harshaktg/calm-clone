@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+import type { Ref } from 'vue'
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
@@ -16,11 +22,14 @@
         <div
             class="flex flex-col items-center justify-between mx-auto max-w-[1440px] px-5 text-center transition-all duration-300 lg:flex-row lg:px-[136px]">
             <div class="mb-10 lg:self-start lg:mb-0 lg:sticky lg:top-[240px]">
-                <h1
-                    class="leading-[150%] mx-auto mb-2 text-[1.96875rem] text-[#1a3e6f] max-w-none lg:text-[3.09375rem] font-bold">
+                <h1 :class="['leading-[150%] mx-auto mb-2 text-[1.96875rem] max-w-none lg:text-[3.09375rem] font-bold',
+                    (currentMood ?? 'default') === 'default' ? 'text-[#1a3e6f]' : theme.text
+                ]">
                     Calm your mind. Change your life.
                 </h1>
-                <p class="mb-9 mt-4 text-[1.125rem] text-[rgba(0,0,0,0.8)] leading-7 sm:text-[1.125rem]">
+                <p :class="['mb-9 mt-4 text-[1.125rem] leading-7 sm:text-[1.125rem]',
+                    (currentMood ?? 'default') === 'default' ? 'text-[rgba(0,0,0,0.8)]' : theme.text
+                ]">
                     The #1 app for sleep, meditation and relaxation
                 </p>
                 <div class="flex flex-col justify-center items-center gap-4 lg:flex-row lg:gap-3">

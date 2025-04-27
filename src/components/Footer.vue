@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+
 const footerSections = [
     {
         title: 'Company',
@@ -52,24 +54,36 @@ const socialLinks = [
         svg: `<svg class="h-[18px] w-[18px] fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" title="Twitter Icon"><path d="M512 97.248c-19.04 8.352-39.328 13.888-60.48 16.576 21.76-12.992 38.368-33.408 46.176-58.016-20.288 12.096-42.688 20.64-66.56 25.408C411.872 60.704 384.416 48 354.464 48c-58.112 0-104.896 47.168-104.896 104.992 0 8.32.704 16.32 2.432 23.936-87.264-4.256-164.48-46.08-216.352-109.792-9.056 15.712-14.368 33.696-14.368 53.056 0 36.352 18.72 68.576 46.624 87.232-16.864-.32-33.408-5.216-47.424-12.928v1.152c0 51.008 36.384 93.376 84.096 103.136-8.544 2.336-17.856 3.456-27.52 3.456-6.72 0-13.504-.384-19.872-1.792 13.6 41.568 52.192 72.128 98.08 73.12-35.712 27.936-81.056 44.768-130.144 44.768-8.608 0-16.864-.384-25.12-1.44C46.496 446.88 101.6 464 161.024 464c193.152 0 298.752-160 298.752-298.688 0-4.64-.16-9.12-.384-13.568 20.832-14.784 38.336-33.248 52.608-54.496z"></path></svg>`
     }
 ]
+
+// Mood theme injection
+import type { Ref } from 'vue'
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
-    <footer class="bg-[#1b2250] py-12 px-5 lg:py-12 lg:px-0">
+    <footer :class="['py-12 px-5 lg:py-12 lg:px-0 transition-colors',
+        (currentMood ?? 'default') === 'default' ? 'bg-[#1b2250]' : theme.bg
+    ]">
         <div class="flex justify-center overflow-visible w-full">
             <ul class="list-none gap-x-6 grid grid-cols-1 md:grid-cols-4 w-full lg:gap-x-9 lg:max-w-[960px]">
                 <li v-for="section in footerSections" :key="section.title" class="mb-4">
-                    <h2 class="text-white text-lg font-medium my-2 leading-[28px]">{{ section.title }}</h2>
+                    <h2 :class="['text-lg font-medium my-2 leading-[28px]',
+                        (currentMood ?? 'default') === 'default' ? 'text-white' : theme.text
+                    ]">{{ section.title }}</h2>
                     <ul class="p-0 list-none">
                         <li v-for="link in section.links" :key="link.label">
-                            <a v-if="!link.isButton" :href="link.url ?? ''" :target="link.target || ''"
-                                class="text-white font-normal text-base leading-[30px] opacity-80 transition duration-300 ease-out hover:opacity-50">{{
-                                    link.label }}</a>
+                            <a v-if="!link.isButton" :href="link.url ?? ''" :target="link.target || ''" :class="['font-normal text-base leading-[30px] opacity-80 transition duration-300 ease-out hover:opacity-50',
+                                (currentMood ?? 'default') === 'default' ? 'text-white' : theme.text
+                            ]">{{
+                                link.label }}</a>
                             <a v-else tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
-                                aria-controls="cookie-preferences-banner"
-                                class="text-white font-normal text-base leading-[30px] opacity-80 transition duration-300 ease-out hover:opacity-50">{{
-                                    link.label
-                                }}</a>
+                                aria-controls="cookie-preferences-banner" :class="['font-normal text-base leading-[30px] opacity-80 transition duration-300 ease-out hover:opacity-50',
+                                    (currentMood ?? 'default') === 'default' ? 'text-white' : theme.text
+                                ]">{{
+                                    link.label }}</a>
                         </li>
                     </ul>
                 </li>
@@ -84,7 +98,9 @@ const socialLinks = [
                 </li>
             </ul>
         </div>
-        <div class="my-[22px] mx-auto items-center text-[15px] leading-5 text-center opacity-50 text-white md:mt-12">
+        <div :class="['my-[22px] mx-auto items-center text-[15px] leading-5 text-center opacity-50 md:mt-12',
+            (currentMood ?? 'default') === 'default' ? 'text-white' : theme.text
+        ]">
             Copyright ©
             2025 Calm. All rights reserved</div>
     </footer>

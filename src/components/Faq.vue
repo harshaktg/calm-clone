@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, inject, computed } from 'vue'
+import type { Ref } from 'vue'
 
 const faqs = [
     {
@@ -90,17 +91,25 @@ const open = ref(faqs.map(cat => cat.items.map(() => false)))
 function toggle(catIdx: number, qIdx: number) {
     open.value[catIdx][qIdx] = !open.value[catIdx][qIdx]
 }
+
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
     <section
-        class="faq-container mt-0 mx-auto max-w-[1440px] pt-0 px-5 pb-[60px] text-center lg:pt-0 lg:px-[136px] lg:pb-[100px]">
-        <h2 class="text-2xl mb-8 leading-[60px] text-[#1a3e6f] font-bold lg:text-4xl" id="faq-heading">Frequently Asked
-            Questions</h2>
+        :class="['faq-container mt-0 mx-auto max-w-[1440px] pt-0 px-5 pb-[60px] text-center lg:pt-0 lg:px-[136px] lg:pb-[100px]', 'bg-transparent']">
+        <h2 :class="['text-2xl mb-8 leading-[60px] font-bold lg:text-4xl',
+            (currentMood ?? 'default') === 'default' ? 'text-[#1a3e6f]' : theme.text
+        ]" id="faq-heading">Frequently
+            Asked Questions</h2>
         <div aria-labelledby="faq-heading" class="list-none pl-0">
             <template v-for="(cat, catIdx) in faqs" :key="cat.category">
-                <h3
-                    class="font-bold text-[#1a3e6f] text-xl mx-0 mb-4 text-left mt-10 lg:text-[22.5px] lg:mb-[20px] lg:mt-[40px] first-of-type:mt-0">
+                <h3 :class="['font-bold text-xl mx-0 mb-4 text-left mt-10 lg:text-[22.5px] lg:mb-[20px] lg:mt-[40px] first-of-type:mt-0',
+                    (currentMood ?? 'default') === 'default' ? 'text-[#1a3e6f]' : theme.accent
+                ]">
                     {{ cat.category }}</h3>
                 <div v-for="(item, qIdx) in cat.items" :key="item.question" class="question-item">
                     <span :id="`react-aria-${catIdx * 100 + qIdx * 2 + 4}`" class="Collapsible__trigger"
@@ -117,12 +126,12 @@ function toggle(catIdx: number, qIdx: number) {
                                         fill="#C6C6C6"></path>
                                 </svg>
                             </span>
-                            <span class="text-lg font-bold pr-4">{{ item.question }}</span>
+                            <span :class="['text-lg font-bold pr-4', theme.text]">{{ item.question }}</span>
                         </div>
                     </span>
-                    <div :id="`react-aria-${catIdx * 100 + qIdx * 2 + 3}`"
-                        class="Collapsible__contentOuter text-[#1c1c1c] hover:text-[#1c1c1c]"
-                        :style="open[catIdx][qIdx] ? 'height:auto;overflow:visible' : 'height:0;overflow:hidden;transition:height 200ms ease-in-out;'"
+                    <div :id="`react-aria-${catIdx * 100 + qIdx * 2 + 3}`" :class="['Collapsible__contentOuter',
+                        (currentMood ?? 'default') === 'default' ? 'text-[#1c1c1c] hover:text-[#1c1c1c]' : theme.text
+                    ]" :style="open[catIdx][qIdx] ? 'height:auto;overflow:visible' : 'height:0;overflow:hidden;transition:height 200ms ease-in-out;'"
                         role="region" :aria-labelledby="`react-aria-${catIdx * 100 + qIdx * 2 + 4}`">
                         <div class="Collapsible__contentInner">
                             <div class="sc-dCFHLb bYgPDL">
@@ -147,6 +156,7 @@ function toggle(catIdx: number, qIdx: number) {
     transition: transform 0.2s ease-in-out;
     transform: rotate(0deg);
 }
+
 
 .caret-icon path {
     @apply w-full h-full;

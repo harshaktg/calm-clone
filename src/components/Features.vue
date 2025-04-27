@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+import type { Ref } from 'vue'
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
-    <section class="mx-auto max-w-[1440px] px-5 pb-[60px] text-center lg:px-[136px] lg:pb-[100px]">
-        <h2 class="text-[24px] mb-8 m-0 leading-[60px] text-[#1a3e6f] lg:text-[36px] lg:mb-10 font-bold">
+    <section :class="[theme.text, 'mx-auto max-w-[1440px] px-5 pb-[60px] text-center lg:px-[136px] lg:pb-[100px]']">
+        <h2
+            :class="[theme.text, 'text-[24px] mb-8 m-0 leading-[60px] text-[#1a3e6f] lg:text-[36px] lg:mb-10 font-bold']">
             We're here to help you feel better.
         </h2>
         <ul class="list-none text-center p-0 lg:text-left lg:grid lg:gap-12 lg:grid-cols-3">

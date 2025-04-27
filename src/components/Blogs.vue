@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, inject } from 'vue'
+import type { Ref } from 'vue'
 
 const blogs = [
     {
@@ -282,13 +283,19 @@ onUnmounted(() => {
 
 const translateX = computed(() => `translateX(-${currentBlog.value * (itemWidth.value + gap.value)}px)`)
 const carouselWidth = computed(() => `${blogs.length * itemWidth.value + (blogs.length - 1) * gap.value}px`)
+
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
-    <section class="overflow-hidden w-full">
+    <section :class="[theme.text, 'overflow-hidden w-full']">
         <div class="text-center pt-0 px-5 pb-[60px] max-w-[1440px] mx-auto my-0 lg:pt-0 lg:px-[136px] lg:pb-[100px]">
-            <h2
-                class="mt-0 mx-auto mb-8 leading-10 text-[1.6875rem] text-[#1a3e6f] font-bold lg:leading-[48px] lg:text-[1.96875rem] lg:mt-0 lg:mx-auto lg:mb-10 max-w-[748px]">
+            <h2 :class="['mt-0 mx-auto mb-8 leading-10 text-[1.6875rem] font-bold lg:leading-[48px] lg:text-[1.96875rem] lg:mt-0 lg:mx-auto lg:mb-10 max-w-[748px]',
+                (currentMood ?? 'default') === 'default' ? 'text-[#1a3e6f]' : theme.text
+            ]">
                 Check out our blog
                 for more meditation, sleep, stress,
                 and mental health resources.</h2>
@@ -307,7 +314,7 @@ const carouselWidth = computed(() => `${blogs.length * itemWidth.value + (blogs.
                                 <div class="p-5 text-left">
                                     <span class="leading-5 text-[0.84375rem] font-medium text-[#1a3e6f] mb-2">{{
                                         blog.category
-                                    }}</span>
+                                        }}</span>
                                     <h3 class="text-lg m-0 leading-7 text-[#1c1c1c] font-bold">{{ blog.title }}</h3>
                                 </div>
                             </a>

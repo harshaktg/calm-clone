@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, inject } from 'vue'
+import type { Ref } from 'vue'
+
+type Mood = 'default' | 'calm' | 'energetic' | 'sleepy' | 'focused'
 
 const reviews = [
     {
@@ -45,6 +48,11 @@ const itemWidth = ref(475)
 const gap = ref(16) // px, default mobile gap-4
 const listRef = ref<HTMLElement | null>(null)
 
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<any>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
+const reviewsBg = computed(() => currentMood?.value === 'default' ? moodThemes?.[currentMood?.value ?? 'default']?.blogBg : 'bg-transparent')
+
 function goLeft() {
     if (current.value > 0) current.value--
 }
@@ -81,7 +89,7 @@ const carouselWidth = computed(() => `${reviews.length * itemWidth.value + (revi
 </script>
 
 <template>
-    <div class="reviews-container">
+    <div :class="['reviews-container', reviewsBg]">
         <section class="w-full overflow-hidden">
             <section
                 class="my-0 mx-auto max-w-[1440px] pb-0 pt-[60px] px-5 text-center lg:pt-0 lg:px-[136px] lg:pb-[100px]">
@@ -168,10 +176,6 @@ const carouselWidth = computed(() => `${reviews.length * itemWidth.value + (revi
 </template>
 
 <style scoped>
-.reviews-container {
-    background: linear-gradient(rgba(226, 234, 255, 0) 0%, rgb(226, 234, 255) 100%);
-}
-
 .right-arrow {
     transform: rotate(180deg);
 }

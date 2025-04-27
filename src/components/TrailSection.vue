@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { inject, computed } from 'vue'
+import type { Ref } from 'vue'
+type Mood = 'calm' | 'energetic' | 'sleepy' | 'focused'
+const currentMood = inject<Ref<Mood>>('currentMood')
+const moodThemes = inject<Record<Mood, { bg: string; text: string; accent: string }>>('moodThemes')
+const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.value] : { bg: '', text: '', accent: '' })
 </script>
 
 <template>
-    <section class="mb-[60px] relative md:mb-[100px]">
+    <section :class="[theme.text, 'mb-[60px] relative md:mb-[100px]']">
         <div class="absolute inset-0 z-0"><span
                 style="box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; inset: 0px;"><img
                     alt=""
@@ -13,7 +19,8 @@
         </div>
         <div
             class="my-0 mx-auto max-w-[620px] pt-[60px] pb-[256px] px-5 relative text-center z-1 md:px-0 md:pt-0 md:pb-[330px]">
-            <h2 class="mb-5 text-2xl leading-[60px] text-[#1a3e6f] lg:text-[36px] lg:mb-6 font-bold">Start your free
+            <h2 :class="[theme.text, 'mb-5 text-2xl leading-[60px] text-[#1a3e6f] lg:text-[36px] lg:mb-6 font-bold']">
+                Start your free
                 trial
                 of<br>Calm Premium.</h2>
             <ul
@@ -38,9 +45,10 @@
                     class="underline">Terms</a> | <a
                     href="https://support.calm.com/hc/en-us/articles/115002473607-How-to-turn-off-auto-renewal-or-cancel-my-subscription"
                     class="underline" target="_blank" rel="noreferrer">Cancel anytime</a></p>
-            <button data-testid="button-element-type" class="
-            continue-button py-3.5 text-lg inline-flex items-center rounded-[100px] text-white font-bold leading-7 relative transition-all duration-300 ease-out justify-center w-full
-            " type="button" tabindex="0">Continue</button>
+            <button data-testid="button-element-type" :class="[
+                'continue-button py-3.5 text-lg inline-flex items-center rounded-[100px] text-white font-bold leading-7 relative transition-all duration-300 ease-out justify-center w-full',
+                (currentMood ?? 'default') === 'default' ? 'continue-button-bg' : theme.bg
+            ]" type="button" tabindex="0">Continue</button>
         </div>
     </section>
 </template>
@@ -72,8 +80,11 @@
     box-shadow: none;
 }
 
-.continue-button {
+.continue-button-bg {
     background: linear-gradient(rgb(36, 119, 170) 0%, rgb(100, 97, 224) 100%);
+}
+
+.continue-button {
     text-decoration: none;
     min-height: 48px;
     min-width: 48px;
