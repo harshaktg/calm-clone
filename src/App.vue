@@ -16,7 +16,9 @@ import Blogs from './components/Blogs.vue';
     <MusicBanner />
     <Reviews />
     <TrailSection />
-    <Blogs />
+    <div class="blog-container">
+      <Blogs />
+    </div>
   </main>
 </template>
 
@@ -34,5 +36,9 @@ import Blogs from './components/Blogs.vue';
 
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.blog-container {
+  background: linear-gradient(rgba(226, 234, 255, 0) 0%, rgb(226, 234, 255) 100%);
 }
 </style>

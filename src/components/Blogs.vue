@@ -285,84 +285,76 @@ const carouselWidth = computed(() => `${blogs.length * itemWidth.value + (blogs.
 </script>
 
 <template>
-    <div class="blog-container">
-        <section class="overflow-hidden w-full">
-            <div
-                class="text-center pt-0 px-5 pb-[60px] max-w-[1440px] mx-auto my-0 lg:pt-0 lg:px-[136px] lg:pb-[100px]">
-                <h2
-                    class="mt-0 mx-auto mb-8 leading-10 text-[1.6875rem] text-[#1a3e6f] font-bold lg:leading-[48px] lg:text-[1.96875rem] lg:mt-0 lg:mx-auto lg:mb-10 max-w-[748px]">
-                    Check out our blog
-                    for more meditation, sleep, stress,
-                    and mental health resources.</h2>
-                <ul ref="listRef"
-                    class="h-[338px] lg:h-[492px] list-none relative z-0 w-full flex transition-transform duration-200 ease-in-out gap-4 lg:gap-6"
-                    :style="{ width: carouselWidth, transform: translateX }">
-                    <li v-for="(blog, idx) in blogs" :key="blog.href"
-                        class="blog-item h-[338px] lg:h-[492px] flex-shrink-0 flex-grow-0"
-                        :style="{ width: `${itemWidth}px` }" :aria-hidden="currentBlog !== idx">
-                        <div class="h-full">
-                            <article class="bg-white rounded-[20px] h-full">
-                                <a :href="blog.href" :tabindex="blog.tabindex"
-                                    class="item-link block relative no-underline">
-                                    <img loading="lazy" :src="blog.img.src" :alt="blog.img.alt"
-                                        class="rounded-t-[20px] w-full h-[214px] overflow-hidden object-cover lg:h-[300px]">
-                                    <div class="p-5 text-left">
-                                        <span class="leading-5 text-[0.84375rem] font-medium text-[#1a3e6f] mb-2">{{
-                                            blog.category
-                                        }}</span>
-                                        <h3 class="text-lg m-0 leading-7 text-[#1c1c1c] font-bold">{{ blog.title }}</h3>
-                                    </div>
-                                </a>
-                            </article>
+    <section class="overflow-hidden w-full">
+        <div class="text-center pt-0 px-5 pb-[60px] max-w-[1440px] mx-auto my-0 lg:pt-0 lg:px-[136px] lg:pb-[100px]">
+            <h2
+                class="mt-0 mx-auto mb-8 leading-10 text-[1.6875rem] text-[#1a3e6f] font-bold lg:leading-[48px] lg:text-[1.96875rem] lg:mt-0 lg:mx-auto lg:mb-10 max-w-[748px]">
+                Check out our blog
+                for more meditation, sleep, stress,
+                and mental health resources.</h2>
+            <ul ref="listRef"
+                class="h-[338px] lg:h-[492px] list-none relative z-0 w-full flex transition-transform duration-200 ease-in-out gap-4 lg:gap-6"
+                :style="{ width: carouselWidth, transform: translateX }">
+                <li v-for="(blog, idx) in blogs" :key="blog.href"
+                    class="blog-item h-[338px] lg:h-[492px] flex-shrink-0 flex-grow-0"
+                    :style="{ width: `${itemWidth}px` }" :aria-hidden="currentBlog !== idx">
+                    <div class="h-full">
+                        <article class="bg-white rounded-[20px] h-full">
+                            <a :href="blog.href" :tabindex="blog.tabindex"
+                                class="item-link block relative no-underline">
+                                <img loading="lazy" :src="blog.img.src" :alt="blog.img.alt"
+                                    class="rounded-t-[20px] w-full h-[214px] overflow-hidden object-cover lg:h-[300px]">
+                                <div class="p-5 text-left">
+                                    <span class="leading-5 text-[0.84375rem] font-medium text-[#1a3e6f] mb-2">{{
+                                        blog.category
+                                    }}</span>
+                                    <h3 class="text-lg m-0 leading-7 text-[#1c1c1c] font-bold">{{ blog.title }}</h3>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </li>
+            </ul>
+            <ul class="my-6 mx-0 p-0 items-center flex justify-center list-none lg:justify-end">
+                <li>
+                    <button data-testid="button-element-type" class="left-button"
+                        :class="{ 'bg-[#00000033]': currentBlog === 0, 'bg-[#00000066]': currentBlog !== 0 }"
+                        aria-label="previous" type="button" :disabled="currentBlog === 0" @click="goLeft">
+                        <div
+                            class="navigation-icon flex items-center justify-center w-5 h-5 text-white font-bold leading-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="96" height="96" viewBox="0 0 96 96">
+                                <path
+                                    d="M57.99975,81.99975 C57.48775,81.99975 56.97675,81.80475 56.58575,81.41375 L24.58575,49.41375 C23.80475,48.63275 23.80475,47.36675 24.58575,46.58575 L56.58575,14.58575 C57.36675,13.80475 58.63275,13.80475 59.41375,14.58575 C60.19475,15.36675 60.19475,16.63275 59.41375,17.41375 L28.82875,47.99975 L59.41375,78.58575 C60.19475,79.36675 60.19475,80.63275 59.41375,81.41375 C59.02275,81.80475 58.51175,81.99975 57.99975,81.99975"
+                                    fill="#000000" fill-rule="evenodd"></path>
+                            </svg>
                         </div>
-                    </li>
-                </ul>
-                <ul class="my-6 mx-0 p-0 items-center flex justify-center list-none lg:justify-end">
-                    <li>
-                        <button data-testid="button-element-type" class="left-button"
-                            :class="{ 'bg-[#00000033]': currentBlog === 0, 'bg-[#00000066]': currentBlog !== 0 }"
-                            aria-label="previous" type="button" :disabled="currentBlog === 0" @click="goLeft">
-                            <div
-                                class="navigation-icon flex items-center justify-center w-5 h-5 text-white font-bold leading-7">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="96" height="96" viewBox="0 0 96 96">
-                                    <path
-                                        d="M57.99975,81.99975 C57.48775,81.99975 56.97675,81.80475 56.58575,81.41375 L24.58575,49.41375 C23.80475,48.63275 23.80475,47.36675 24.58575,46.58575 L56.58575,14.58575 C57.36675,13.80475 58.63275,13.80475 59.41375,14.58575 C60.19475,15.36675 60.19475,16.63275 59.41375,17.41375 L28.82875,47.99975 L59.41375,78.58575 C60.19475,79.36675 60.19475,80.63275 59.41375,81.41375 C59.02275,81.80475 58.51175,81.99975 57.99975,81.99975"
-                                        fill="#000000" fill-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                        </button>
-                    </li>
-                    <li>
-                        <button data-testid="button-element-type" class="right-button"
-                            :class="{ 'bg-[#00000033]': currentBlog === blogs.length - 1, 'bg-[#00000066]': currentBlog !== blogs.length - 1 }"
-                            aria-label="next" type="button" :disabled="currentBlog === blogs.length - 1"
-                            @click="goRight">
-                            <div
-                                class="navigation-icon flex items-center justify-center w-5 h-5 text-white font-bold leading-7">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="96" height="96" viewBox="0 0 96 96">
-                                    <path
-                                        d="M57.99975,81.99975 C57.48775,81.99975 56.97675,81.80475 56.58575,81.41375 L24.58575,49.41375 C23.80475,48.63275 23.80475,47.36675 24.58575,46.58575 L56.58575,14.58575 C57.36675,13.80475 58.63275,13.80475 59.41375,14.58575 C60.19475,15.36675 60.19475,16.63275 59.41375,17.41375 L28.82875,47.99975 L59.41375,78.58575 C60.19475,79.36675 60.19475,80.63275 59.41375,81.41375 C59.02275,81.80475 58.51175,81.99975 57.99975,81.99975"
-                                        fill="#000000" fill-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                        </button>
-                    </li>
-                </ul>
-                <a href="https://calm.com/blog"
-                    class="text-lg text-black inline-block font-bold underline my-0 mx-auto lg:-translate-y-[56px]">See
-                    all blogs</a>
-            </div>
-        </section>
-    </div>
+                    </button>
+                </li>
+                <li>
+                    <button data-testid="button-element-type" class="right-button"
+                        :class="{ 'bg-[#00000033]': currentBlog === blogs.length - 1, 'bg-[#00000066]': currentBlog !== blogs.length - 1 }"
+                        aria-label="next" type="button" :disabled="currentBlog === blogs.length - 1" @click="goRight">
+                        <div
+                            class="navigation-icon flex items-center justify-center w-5 h-5 text-white font-bold leading-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="96" height="96" viewBox="0 0 96 96">
+                                <path
+                                    d="M57.99975,81.99975 C57.48775,81.99975 56.97675,81.80475 56.58575,81.41375 L24.58575,49.41375 C23.80475,48.63275 23.80475,47.36675 24.58575,46.58575 L56.58575,14.58575 C57.36675,13.80475 58.63275,13.80475 59.41375,14.58575 C60.19475,15.36675 60.19475,16.63275 59.41375,17.41375 L28.82875,47.99975 L59.41375,78.58575 C60.19475,79.36675 60.19475,80.63275 59.41375,81.41375 C59.02275,81.80475 58.51175,81.99975 57.99975,81.99975"
+                                    fill="#000000" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+            <a href="https://calm.com/blog"
+                class="text-lg text-black inline-block font-bold underline my-0 mx-auto lg:-translate-y-[56px]">See
+                all blogs</a>
+        </div>
+    </section>
 </template>
 
 <style scoped>
-.blog-container {
-    background: linear-gradient(rgba(226, 234, 255, 0) 0%, rgb(226, 234, 255) 100%);
-}
-
 .left-button {
     height: 2rem;
     margin-left: 0.5rem;
