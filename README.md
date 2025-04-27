@@ -1,93 +1,124 @@
-# Vite + Vue 3 + TypeScript Starter
+# 🌙 Calm Clone — Hackathon Submission
 
-A modern and minimal starter template for building Vue 3 applications with TypeScript. This template comes pre-configured with Vite for lightning-fast development, TypeScript for type safety, ESLint for code quality, and Vue SFC (Single File Component) support.
+A modern, responsive recreation of the **Calm landing page**, rebuilt using **Vue 3**, **TypeScript**, and **Tailwind CSS**. This project replicates Calm's serene design while introducing personalized mood-based theming and ambient soundscapes to create a deeply immersive user experience.
 
-## Features
+---
 
-- ⚡️ [Vite](https://vitejs.dev/) - Lightning fast frontend tooling
-- 🖖 [Vue 3](https://vuejs.org/) - The Progressive JavaScript Framework
-- 📝 [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
-- 🔍 [ESLint](https://eslint.org/) - Code linting for better quality
-- 📑 [Vue SFC](https://vuejs.org/guide/scaling-up/sfc.html) - Single File Components support
-- 🔧 Modern configuration out of the box
+## 🚀 Features
 
-## Prerequisites
+### ✅ Cloned from Calm
+- Pixel-perfect replica of the **Calm landing page**
+- Recreated sections: Hero, Features, Product Highlights, Testimonials, Footer
 
-- Node.js (version 16.0 or higher)
-- npm or yarn or pnpm
+> ℹ️ **Note:** The original Calm website is a fully static marketing page.  
+This project introduces **dynamic personalization features** for an enhanced interactive experience.
 
-## Getting Started
+---
 
-1. Clone this repository:
+### ✨ Enhancements
+- **Dynamic Mood-Based Themes**  
+  - Choose a mood (e.g., Calm, Energetic, Sleepy, Focused)
+  - Instantly changes the site's background gradients and color palette
+  - Smooth animated transitions between moods
+  - **Persisted Mood Preference**: The selected mood is saved in localStorage and restored on revisit
+
+- **Ambient Soundscapes**  
+  - Plays curated ambient sounds based on the selected mood
+  - Examples: Ocean waves, Rain, Forest sounds, Wind chimes
+  - Built-in play/pause functionality tied to mood selection
+
+- **Polished UX Improvements**  
+  - Fully responsive mobile-first design
+  - Smooth scroll behavior
+  - Subtle hover animations and accessibility focus
+
+---
+
+## 🧠 Tech Stack
+
+| Tech | Description |
+|------|-------------|
+| [Vue 3](https://vuejs.org/) | Composition API with `<script setup>` |
+| [TypeScript](https://www.typescriptlang.org/) | Strong typing and maintainability |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework for responsive design |
+| [Vite](https://vitejs.dev/) | High-speed build tool and dev server |
+
+---
+
+## 🚧 Challenges Faced
+
+- 🎵 **Seamless Audio Playback with Mood Changes:**  
+  Implementing dynamic ambient audio that starts and stops based on mood selection required careful state management to avoid overlapping or leaking audio streams.  
+  Vue's reactive system and event-based controls were leveraged to ensure smooth transitions between different sound environments.
+
+- ⚙️ **Browser Autoplay Restrictions:**  
+  Due to modern browser security restrictions, audio playback cannot start automatically on page load without explicit user interaction with the DOM (such as clicking a button).  
+  Therefore, ambient soundscapes are only activated after the user selects a mood, ensuring compliance with browser autoplay policies.
+
+---
+
+## 📦 Getting Started
+
+### Clone the repo
 ```bash
-git clone <your-repo-url>
-cd vite-vue-starter
+git clone https://github.com/your-username/calm-clone.git
+cd calm-clone
 ```
 
-2. Install dependencies:
+## Install dependencies
+
 ```bash
-npm install
-# or
-yarn
-# or
 pnpm install
 ```
 
-3. Start the development server:
+## Run in development
+
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
 ```
 
-4. Open your browser and visit `http://localhost:5173`
+## Build for production
 
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-
-## Project Structure
-
-```
-vite-vue-starter/
-├── public/              # Static assets
-├── src/                 # Source files
-│   ├── assets/         # Project assets
-│   ├── components/     # Vue components
-│   ├── App.vue         # Root component
-│   ├── main.ts         # Application entry point
-│   └── vite-env.d.ts   # Vite environment declarations
-├── index.html          # Entry HTML file
-├── package.json        # Project metadata and dependencies
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite configuration
-└── .eslintrc.js        # ESLint configuration
+```bash
+pnpm build
 ```
 
-## Customization
+---
 
-### ESLint Configuration
+## 📱 UX Highlights
 
-The project comes with a default ESLint configuration. You can modify the rules in `.eslintrc.js` to match your coding style preferences.
+- Fully responsive design optimized for mobile, tablet, and desktop
+- Dynamic mood selection with visually adaptive themes
+- Ambient soundscapes to enhance emotional engagement
+- Smooth transitions and animated feedback on user actions
+- Persisted mood preferences across sessions
 
-### TypeScript Configuration
+---
 
-TypeScript settings can be adjusted in `tsconfig.json`. The default configuration provides a good balance of type safety and development experience.
+## 📸 Screenshots
 
-### Vite Configuration
+Add screenshots showcasing:
+- Mood selector in action
+- Different theme variations (Calm, Energetic, Sleepy, Focused)
+- Responsive mobile layout
+- Ambient music player UI (if applicable)
 
-The Vite configuration is located in `vite.config.ts`. You can customize build options, add plugins, and modify the development server settings here.
+---
 
-## Contributing
+## 🏁 Final Notes
 
-Feel free to submit issues and enhancement requests!
+This clone is built as a Pixel Plus Hackathon submission to showcase frontend precision, creative UX personalization, and immersive sensory design — extending beyond the original Calm landing page experience.
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📝 License
+
+MIT
+
+---
+
+## 🔗 Links
+
+[**Live Demo:**](https://calm-clone-three.vercel.app/)
+
+Built with ❤️ for mindfulness, music, and innovation.
