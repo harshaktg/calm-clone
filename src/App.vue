@@ -5,6 +5,7 @@ import Features from './components/Features.vue';
 import MusicBanner from './components/MusicBanner.vue';
 import Reviews from './components/Reviews.vue';
 import TrailSection from './components/TrailSection.vue';
+import Blogs from './components/Blogs.vue';
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import TrailSection from './components/TrailSection.vue';
     <MusicBanner />
     <Reviews />
     <TrailSection />
+    <Blogs />
   </main>
 </template>
 
