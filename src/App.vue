@@ -4,6 +4,7 @@ import Hero from './components/Hero.vue';
 import Features from './components/Features.vue';
 import MusicBanner from './components/MusicBanner.vue';
 import Reviews from './components/Reviews.vue';
+import TrailSection from './components/TrailSection.vue';
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import Reviews from './components/Reviews.vue';
     <Features />
     <MusicBanner />
     <Reviews />
+    <TrailSection />
   </main>
 </template>
 
