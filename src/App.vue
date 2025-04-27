@@ -7,6 +7,7 @@ import Reviews from './components/Reviews.vue';
 import TrailSection from './components/TrailSection.vue';
 import Blogs from './components/Blogs.vue';
 import Faq from './components/Faq.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <template>
@@ -21,6 +22,7 @@ import Faq from './components/Faq.vue';
       <Blogs />
       <Faq />
     </div>
+    <Footer />
   </main>
 </template>
 
