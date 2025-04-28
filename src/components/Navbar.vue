@@ -27,10 +27,10 @@ onUnmounted(() => {
         <div data-focus-guard="true" tabindex="-1" class="w-px h-0 p-0 overflow-hidden fixed top-px left-px"></div>
         <div class="w-full">
             <nav aria-label="primary" class="flex justify-between w-full p-0">
-                <ul class="flex items-center p-0 gap-x-6 list-none">
+                <ul class="flex items-center p-0 gap-x-6 list-none xl:gap-x-12">
                     <li class="h-[60px] w-[76px] relative text-center">
                         <a data-testid="Link-element-type"
-                            class="app-logo h-[25px] w-[64px] inline-flex items-center bg-transparent rounded-full border-none text-white font-avenir-next text-base font-medium leading-7 justify-center relative transition duration-300 z-0 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] px-3 py-3 md:py-3 md:text-lg"
+                            class="app-logo h-[25px] w-[64px] inline-flex items-center bg-transparent rounded-full border-none text-white font-avenir-next text-base font-medium leading-7 justify-center relative transition duration-300 z-0 cursor-pointer outline-none no-underline min-h-[48px] min-w-[48px] px-3 py-3 md:py-3 md:text-lg lg:h-[60px] lg:w-[85px]"
                             :class="{ 'scrolled': scrolled }" aria-label="Calm Logo - Link to calm.com Homepage"
                             tabindex="0" href="/">
                             <span
@@ -107,7 +107,7 @@ onUnmounted(() => {
                         </button>
                     </li>
                 </ul>
-                <ul class="flex items-center p-0 gap-x-6 list-none">
+                <ul class="flex items-center p-0 gap-x-6 list-none xl:gap-x-12">
                     <li class="hidden flex-shrink-0 lg:block">
                         <button
                             class="bg-transparent font-avenir-next font-medium relative transition duration-300 z-0 cursor-pointer px-0 m-0 border-none inline-block min-h-[48px] min-w-[48px] lg:font-bold lg:text-lg"
@@ -131,7 +131,7 @@ onUnmounted(() => {
                     </li>
                     <li class="flex-0 w-[180px] text-center max-w-[180px]">
                         <button data-testid="button-element-type"
-                            class="inline-flex items-center font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-[1.11rem] py-3.5 md:py-3 text-lg"
+                            class="inline-flex items-center font-avenir-next font-bold rounded-full border-none justify-center relative transition duration-300 z-0 cursor-pointer w-full outline-none no-underline min-h-[48px] min-w-[48px] px-[1.11rem] py-3.5 text-lg"
                             :class="{ 'bg-gradient-to-b from-[#2477AA] to-[#6461E0] text-white': scrolled, 'bg-white text-gray-800': !scrolled }">
                             Try Calm for Free
                         </button>

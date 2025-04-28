@@ -32,7 +32,7 @@ const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.
                             <div><span class="
                                 leading-7 text-lg font-bold
                                 ">Yearly<br></span><span class="leading-5 text-[0.8435rem]">$49.99/yr.</span></div>
-                            <div>$4.17/mo.</div>
+                            <div class="lg:text-lg">$4.17/mo.</div>
                         </div>
                         <div class="badge"><span class="leading-5 text-white text-[0.8435rem]">14-Day Free Trial</span>
                         </div>

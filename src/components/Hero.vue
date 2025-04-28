@@ -27,18 +27,18 @@ const theme = computed(() => moodThemes && currentMood ? moodThemes[currentMood.
                 ]">
                     Calm your mind. Change your life.
                 </h1>
-                <p :class="['mb-9 mt-4 text-[1.125rem] leading-7 sm:text-[1.125rem]',
+                <p :class="['mb-9 mt-4 text-[1.125rem] leading-7 sm:text-[1.125rem] lg:text-[1.40rem] lg:font-medium',
                     (currentMood ?? 'default') === 'default' ? 'text-[rgba(0,0,0,0.8)]' : theme.text
                 ]">
                     The #1 app for sleep, meditation and relaxation
                 </p>
                 <div class="flex flex-col justify-center items-center gap-4 lg:flex-row lg:gap-3">
                     <button data-testid="button-element-type"
-                        class="inline-flex items-center justify-center w-full min-h-[48px] min-w-[48px] px-4 py-3.5 sm:py-[0.875rem] rounded-full border-none font-bold text-white bg-gradient-to-b from-[#2477aa] to-[#6461e0] text-[1.125rem] leading-7 transition-all duration-300 cursor-pointer outline-none no-underline shadow-none">
+                        class="inline-flex items-center justify-center w-full min-h-[48px] min-w-[48px] px-4 py-3.5 sm:py-[0.875rem] rounded-full border-none font-bold text-white bg-gradient-to-b from-[#2477aa] to-[#6461e0] text-[1.125rem] leading-7 transition-all duration-300 cursor-pointer outline-none no-underline shadow-none lg:max-w-[335px]">
                         Try Calm for Free
                     </button>
                     <button data-testid="button-element-type"
-                        class="inline-flex items-center justify-center w-full min-h-[48px] min-w-[48px] px-4 py-3.5 sm:py-[0.875rem] rounded-full border border-[rgba(0,0,0,0.2)] font-bold text-[#383838] bg-white text-[1.125rem] leading-7 transition-all duration-300 cursor-pointer outline-none no-underline shadow-none">
+                        class="inline-flex items-center justify-center w-full min-h-[48px] min-w-[48px] px-4 py-3.5 sm:py-[0.875rem] rounded-full border border-[rgba(0,0,0,0.2)] font-bold text-[#383838] bg-white text-[1.125rem] leading-7 transition-all duration-300 cursor-pointer outline-none no-underline shadow-none lg:max-w-[335px]">
                         Already have an account?
                     </button>
                 </div>
