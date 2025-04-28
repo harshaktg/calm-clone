@@ -97,11 +97,29 @@ pnpm build
 
 ## 📸 Screenshots
 
-Add screenshots showcasing:
-- Mood selector in action
-- Different theme variations (Calm, Energetic, Sleepy, Focused)
-- Responsive mobile layout
-- Ambient music player UI (if applicable)
+![image](https://github.com/user-attachments/assets/ba053caa-1be4-4b6a-981a-35cd0e545ae1)
+
+Desktop view
+
+![image](https://github.com/user-attachments/assets/0621d0d8-a039-4f9e-a83e-d86d4e3c3a78)
+
+Tablet view
+
+![image](https://github.com/user-attachments/assets/90d602f9-680c-4b36-80e6-cfb9355fbbe7)
+
+Mobile view
+
+![image](https://github.com/user-attachments/assets/4c1e3b75-641d-4c14-ab16-a20fbfee7a9d)
+
+Mood selector along with theme, ambient music and basic music controls
+
+---
+
+## 📸 Screen recordings
+
+[Desktop view](https://drive.google.com/file/d/1XF5DlGJDZLFxz5EtVGatLHWGgKEbcsck/view?usp=sharing)
+
+[Mobile view](https://drive.google.com/file/d/13TfWiFxkRXkJ7Tq81QKgHH7StjuL4q6n/view?usp=sharing)
 
 ---
 
